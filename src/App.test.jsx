@@ -7,4 +7,3 @@ describe('Simple working test', () => {
     expect(1).toBe(1)
   })
 })
-

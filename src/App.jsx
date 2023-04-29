@@ -1,9 +1,5 @@
 function App() {
-  return (
-    <div>
-      {/* TODO: Write your code here */}
-    </div>
-  );
+  return <div>{/* TODO: Write your code here */}</div>
 }
 
-export default App;
+export default App
