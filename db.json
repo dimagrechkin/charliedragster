@@ -1,0 +1,32 @@
+{
+  "people": [
+    {
+      "name": "people"
+    }
+  ],
+  "planets": [
+    {
+      "name": "planets"
+    }
+  ],
+  "films": [
+    {
+      "name": "films"
+    }
+  ],
+  "species": [
+    {
+      "name": "species"
+    }
+  ],
+  "vehicles": [
+    {
+      "name": "vehicles"
+    }
+  ],
+  "starships": [
+    {
+      "name": "starships"
+    }
+  ]
+}
