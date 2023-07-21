@@ -4,6 +4,7 @@
 - clone your own repo to your local machine and open it in VS Code
 - you can find a task description in this project issues
 - don't forget to install dependecies: `yarn install`
+- don't forget to start the server run the command `yarn run devServer`
 - create a separate branch and make your task
 - when you finish a task commit your changes and push your branch
 - make a merge request to `main` branch in a web
