@@ -1,15 +1,23 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'StarWars';
+  src: url('./fonts/StarJediHollow-A4lL.woff') format('truetype');
 }
 
-body {
-  margin: 0;
+.active {
+  @apply text-custom-yellow;
+}
+
+.bg-star-wars {
+  background: radial-gradient(2px 2px at 30% 30%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0)) 0 0,
+    radial-gradient(2px 2px at 40% 70%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) 50px 50px,
+    radial-gradient(2px 2px at 70% 40%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)) 100px 100px,
+    radial-gradient(2px 2px at 80% 80%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) 150px 150px, #0e0e0e;
+
+  background-size: 200px 200px;
 }

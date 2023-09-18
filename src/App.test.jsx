@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import axios from 'axios'
 import '@testing-library/jest-dom'
 
-import App from './App'
+import { App } from './App'
 
 const TEST_URL = 'http://localhost:3004/characters'
 

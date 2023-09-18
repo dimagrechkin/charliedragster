@@ -2460,49 +2460,52 @@
   ],
   "vehicles": [
     {
-        "vehicle_name": "Threadspeeder",
-        "image": "https://static.wikia.nocookie.net/starwars/images/d/dd/CompleteVehicles2018.png/revision/latest?cb=20210829161104",
-        "model": "Gary Kurtz, Rick McCallum",
-        "manufacturer": "1977-05-25",
-        "cost_in_credits": ["Character 1", "Character 2", "Character 3", "Character 4", "Character 5", "Character 6", "Character 7", "Character 8"],
-        "length": ["Planet 1", "Planet 2", "Planet 3"],
-        "max_atmosphere_speed": 1111,
-        "crew": 123,
-        "passengers": 123,
-        "cargo_capacity": 123,
-        "consumables": "Lorem ipsum",
-        "vehicle_class": 123,
-        "pilots": 123
+      "id": 1,
+      "vehicle_name": "Threadspeeder",
+      "image": "https://static.wikia.nocookie.net/starwars/images/d/dd/CompleteVehicles2018.png/revision/latest?cb=20210829161104",
+      "model": "125-Z",
+      "manufacturer": "Aratech-Loratus Corporation",
+      "cost_in_credits": 5300,
+      "length": "4.17",
+      "max_atmosphere_speed": 1111,
+      "crew": 123,
+      "passengers": 123,
+      "cargo_capacity": 123,
+      "consumables": "Lorem ipsum",
+      "vehicle_class": 123,
+      "pilots": 123
     },
     {
-        "vehicle_name": "Speeder Bike",
-        "image": "https://static.wikia.nocookie.net/starwars/images/d/dd/CompleteVehicles2018.png/revision/latest?cb=20210829161104",
-        "model": "Gary Kurtz, Rick McCallum",
-        "manufacturer": "1977-05-25",
-        "cost_in_credits": ["Character 1", "Character 2", "Character 3", "Character 4", "Character 5", "Character 6", "Character 7", "Character 8"],
-        "length": ["Planet 1", "Planet 2", "Planet 3"],
-        "max_atmosphere_speed": 1111,
-        "crew": 123,
-        "passengers": 123,
-        "cargo_capacity": 123,
-        "consumables": "Lorem ipsum",
-        "vehicle_class": 123,
-        "pilots": 123
+      "id": 2,
+      "vehicle_name": "Speeder Bike",
+      "image": "https://static.wikia.nocookie.net/starwars/images/d/dd/CompleteVehicles2018.png/revision/latest?cb=20210829161104",
+      "model": "Aratech 74-Z",
+      "manufacturer": "Aratech Repulsor Corporation",
+      "cost_in_credits": 8300,
+      "length": "3.4",
+      "max_atmosphere_speed": 1111,
+      "crew": 123,
+      "passengers": 123,
+      "cargo_capacity": 123,
+      "consumables": "Lorem ipsum",
+      "vehicle_class": 123,
+      "pilots": 123
     },
     {
-        "vehicle_name": "Landspeeder",
-        "image": "https://static.wikia.nocookie.net/starwars/images/d/dd/CompleteVehicles2018.png/revision/latest?cb=20210829161104",
-        "model": "Gary Kurtz, Rick McCallum",
-        "manufacturer": "1977-05-25",
-        "cost_in_credits": ["Character 1", "Character 2", "Character 3", "Character 4", "Character 5", "Character 6", "Character 7", "Character 8"],
-        "length": ["Planet 1", "Planet 2", "Planet 3"],
-        "max_atmosphere_speed": 1111,
-        "crew": 123,
-        "passengers": 123,
-        "cargo_capacity": 123,
-        "consumables": "Lorem ipsum",
-        "vehicle_class": 123,
-        "pilots": 123
+      "id": 3,
+      "vehicle_name": "Landspeeder",
+      "image": "https://static.wikia.nocookie.net/starwars/images/d/dd/CompleteVehicles2018.png/revision/latest?cb=20210829161104",
+      "model": "XP-38 Sport",
+      "manufacturer": "SoroSuub Corporation",
+      "cost_in_credits": 11000,
+      "length": "3.4",
+      "max_atmosphere_speed": 1111,
+      "crew": 123,
+      "passengers": 123,
+      "cargo_capacity": 123,
+      "consumables": "Lorem ipsum",
+      "vehicle_class": 123,
+      "pilots": 123
     }
   ],
   "starships": [
@@ -2837,6 +2840,22 @@
       ],
       "created": "2014-12-15T12:31:42.547000Z",
       "edited": "2014-12-20T21:23:49.893000Z"
+    }
+  ],
+  "contacts": [
+    {
+      "firstName": "Baby",
+      "lastName": "Yoda",
+      "email": "grogu@thebest.com",
+      "text": "Hopefully it works, but pretty much impossible for anything to work for 1st try.",
+      "id": 1
+    },
+    {
+      "firstName": "Mandalorian",
+      "lastName": "Pedro",
+      "email": "this@istheway.com",
+      "text": "Everything should work as intended.",
+      "id": 2
     }
   ]
 }
