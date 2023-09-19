@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useGetPlanetsQuery, useGetPlanetsWithPaginationQuery } from '../features/apiSlice'
+import { useGetPlanetsWithPaginationQuery } from '../features/apiSlice'
 import { CardList } from '../components/CardDetails'
 import { Spinner, Error } from '../components'
 import { useLocation } from 'react-router-dom'
@@ -9,14 +9,17 @@ const Planets = () => {
   const { pathname } = useLocation()
   const [type] = pathname.split('/').filter(Boolean)
 
-  const { data: allPlanets = [], isLoading: isAllLoading, isError: isAllError } = useGetPlanetsQuery()
-  const { data: currentPageData = [], isLoading, isError } = useGetPlanetsWithPaginationQuery(currentPage)
+  const {
+    data: { data: currentPageData, total } = {},
+    isLoading,
+    isError,
+  } = useGetPlanetsWithPaginationQuery(currentPage)
 
-  if (isLoading || isAllLoading) {
+  if (isLoading) {
     return <Spinner />
   }
 
-  if (isError || isAllError) {
+  if (isError) {
     return <Error />
   }
 
@@ -24,7 +27,7 @@ const Planets = () => {
     <section className="flex flex-col p-4 bg-white">
       <h1 className="text-xl font-semibold">Planets</h1>
 
-      <CardList data={currentPageData} totalItems={allPlanets.length} setCurrentPage={setCurrentPage} type={type} />
+      <CardList data={currentPageData} totalItems={total} setCurrentPage={setCurrentPage} type={type} />
     </section>
   )
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useGetFilmsQuery, useGetFilmsWithPaginationAndSortingQuery } from '../features/apiSlice'
+import { useGetFilmsWithPaginationAndSortingQuery } from '../features/apiSlice'
 import { CardList } from '../components/CardDetails'
 import { Dropdown, Spinner, Error } from '../components'
 import { dropdownOptions } from '../helpers'
@@ -12,18 +12,17 @@ const Episodes = () => {
   const [type] = pathname.split('/').filter(Boolean)
   const options = dropdownOptions[type]
 
-  const { data: allFilms = [], isLoading: isAllLoading, isError: isAllError } = useGetFilmsQuery()
   const {
-    data: currentPageData = [],
+    data: { data: currentPageData, total } = {},
     isLoading,
     isError,
   } = useGetFilmsWithPaginationAndSortingQuery({ page: currentPage, sortOption })
 
-  if (isLoading || isAllLoading) {
+  if (isLoading) {
     return <Spinner />
   }
 
-  if (isError || isAllError) {
+  if (isError) {
     return <Error />
   }
 
@@ -33,7 +32,7 @@ const Episodes = () => {
         <h1 className="text-xl font-semibold">Episodes</h1>
         <Dropdown options={options} sortOption={sortOption} setSortOption={setSortOption} />
       </div>
-      <CardList data={currentPageData} totalItems={allFilms.length} setCurrentPage={setCurrentPage} type={type} />
+      <CardList data={currentPageData} totalItems={total} setCurrentPage={setCurrentPage} type={type} />
     </section>
   )
 }

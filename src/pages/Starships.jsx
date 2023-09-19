@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useGetStarshipsQuery, useGetStarshipsWithPaginationAndSortingQuery } from '../features/apiSlice'
+import { useGetStarshipsWithPaginationAndSortingQuery } from '../features/apiSlice'
 import { CardList } from '../components/CardDetails'
 import { Dropdown, Spinner, Error } from '../components'
 import { dropdownOptions } from '../helpers'
@@ -12,18 +12,17 @@ const Starships = () => {
   const [type] = pathname.split('/').filter(Boolean)
   const options = dropdownOptions[type]
 
-  const { data: allStarships = [], isLoading: isAllLoading, isError: isAllError } = useGetStarshipsQuery()
   const {
-    data: currentPageData = [],
+    data: { data: currentPageData, total } = {},
     isLoading,
     isError,
   } = useGetStarshipsWithPaginationAndSortingQuery({ page: currentPage, sortOption })
 
-  if (isLoading || isAllLoading) {
+  if (isLoading) {
     return <Spinner />
   }
 
-  if (isError || isAllError) {
+  if (isError) {
     return <Error />
   }
 
@@ -33,7 +32,7 @@ const Starships = () => {
         <h1 className="text-xl font-semibold">Vehicles</h1>
         <Dropdown options={options} sortOption={sortOption} setSortOption={setSortOption} />
       </div>
-      <CardList data={currentPageData} totalItems={allStarships.length} setCurrentPage={setCurrentPage} type={type} />
+      <CardList data={currentPageData} totalItems={total} setCurrentPage={setCurrentPage} type={type} />
     </section>
   )
 }

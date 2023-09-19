@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useGetCharactersQuery, useGetCharactersWithPaginationQuery } from '../features/apiSlice'
+import { useGetCharactersWithPaginationQuery } from '../features/apiSlice'
 import { CardList } from '../components/CardDetails'
 import { Spinner, Error } from '../components'
 import { useLocation } from 'react-router-dom'
@@ -9,14 +9,17 @@ const Characters = () => {
   const { pathname } = useLocation()
   const [type] = pathname.split('/').filter(Boolean)
 
-  const { data: allCharacters = [], isLoading: isAllLoading, isError: isAllError } = useGetCharactersQuery()
-  const { data: currentPageData = [], isLoading, isError } = useGetCharactersWithPaginationQuery(currentPage)
+  const {
+    data: { data: currentPageData, total } = {},
+    isLoading,
+    isError,
+  } = useGetCharactersWithPaginationQuery(currentPage)
 
-  if (isLoading || isAllLoading) {
+  if (isLoading) {
     return <Spinner />
   }
 
-  if (isError || isAllError) {
+  if (isError) {
     return <Error />
   }
 
@@ -24,7 +27,7 @@ const Characters = () => {
     <section className="flex flex-col p-4 bg-white">
       <h1 className="text-xl font-semibold">Characters</h1>
 
-      <CardList data={currentPageData} totalItems={allCharacters.length} setCurrentPage={setCurrentPage} type={type} />
+      <CardList data={currentPageData} totalItems={total} setCurrentPage={setCurrentPage} type={type} />
     </section>
   )
 }
