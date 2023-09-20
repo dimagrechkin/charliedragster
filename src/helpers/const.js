@@ -1,14 +1,25 @@
+// Max limit for pages
 export const itemsPerPage = 6
 export const itemsPerPageForCharacters = 5
 
+// Transitions
 export const cardTransition = 0.2
 
+// Base URL
+export const BASE_URL = 'http://localhost:3004'
+
+// Endpoints
 export const EPISODES = 'episodes'
+export const FILMS = 'films'
 export const CHARACTERS = 'characters'
 export const PLANETS = 'planets'
 export const SPECIES = 'species'
 export const VEHICLES = 'vehicles'
 export const STARSHIPS = 'starships'
+export const CONTACTS = 'contacts'
+
+// HTTP methods
+export const POST = 'POST'
 
 // Questions for Help component
 export const questions = [
