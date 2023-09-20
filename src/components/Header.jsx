@@ -20,7 +20,7 @@ export const Header = () => {
       </Link>
 
       {/* Handle icon render */}
-      <div className="md:hidden flex items-center">
+      <div className="md:hidden flex items-center z-10">
         <Button onClick={handleToggle}>{isOpen ? <AiOutlineClose size={30} /> : <GiHamburgerMenu size={30} />}</Button>
       </div>
 
