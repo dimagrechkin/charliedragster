@@ -4,7 +4,7 @@ import { GroguImage } from '../assets/images'
 
 const LandingPage = () => {
   return (
-    <section className="h-[75vh] flex flex-col items-center justify-around gap-6 p-8 md:text-xl text-sm bg-star-wars text-custom-yellow font-star-wars">
+    <section className="h-[75vh] flex flex-col items-center justify-around md:gap-6 gap-2 p-8 md:text-xl text-xs text-custom-yellow font-star-wars">
       <motion.p initial={{ y: 275, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 5, delay: 1 }}>
         A long time ago in a variable far, far away, React components were born. They brought balance to the Front-End
         universe. But remember, the source code can have a strong influence on the developers, it&apos;s said to be as

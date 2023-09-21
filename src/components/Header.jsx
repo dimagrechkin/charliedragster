@@ -16,7 +16,7 @@ export const Header = () => {
   return (
     <header className="sticky flex justify-between md:py-6 py-3 md:px-16 px-8 bg-custom-black text-white font-sans top-0 z-50">
       <Link to="/">
-        <img src={StarWarsLogo} alt="Logo" loading="lazy" />
+        <img src={StarWarsLogo} alt="Logo" loading="lazy" className="max-md:w-20" />
       </Link>
 
       {/* Handle icon render */}

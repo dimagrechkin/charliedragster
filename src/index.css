@@ -13,11 +13,6 @@
   @apply text-custom-yellow;
 }
 
-.bg-star-wars {
-  background: radial-gradient(2px 2px at 30% 30%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0)) 0 0,
-    radial-gradient(2px 2px at 40% 70%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) 50px 50px,
-    radial-gradient(2px 2px at 70% 40%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)) 100px 100px,
-    radial-gradient(2px 2px at 80% 80%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) 150px 150px, #0e0e0e;
-
-  background-size: 200px 200px;
+.meteor-raining {
+  @apply animate-meteor-effect absolute top-1/2 left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-slate-500 shadow-[0_0_0_1px_#ffffff10] rotate-[215deg] before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[50px] before:h-[1px] before:bg-gradient-to-r before:from-[#64748b] before:to-transparent;
 }

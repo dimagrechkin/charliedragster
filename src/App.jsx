@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Header, Footer, Spinner } from './components'
 
-const LandingPage = lazy(() => import('./pages/LandingPage'))
+const LandingPageWithMeteors = lazy(() => import('./HOC/MeteorBackgroundWrapper'))
 const Episodes = lazy(() => import('./pages/Episodes'))
 const Characters = lazy(() => import('./pages/Characters'))
 const Planets = lazy(() => import('./pages/Planets'))
@@ -22,7 +22,7 @@ export const App = () => {
         <main className="flex-grow md:px-16 p-4 bg-custom-black">
           <Suspense fallback={<Spinner />}>
             <Routes>
-              <Route path="/" element={<LandingPage />} />
+              <Route path="/" element={<LandingPageWithMeteors />} />
               <Route path="/episodes" element={<Episodes />} />
               <Route path="/episodes/:id" element={<SinglePage />} />
               <Route path="/characters" element={<Characters />} />

@@ -1,3 +1,6 @@
+// Number of Meteors we'd like to have in the HOC
+export const meteors = new Array(60).fill(true)
+
 // Max limit for pages
 export const itemsPerPage = 6
 export const itemsPerPageForCharacters = 5
