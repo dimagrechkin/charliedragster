@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { useFormik } from 'formik'
 import { usePostContactMutation } from '../features/apiSlice'
 import { Tooltip, Button } from '../components'
@@ -8,6 +9,11 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const ContactPage = () => {
   const [postContact] = usePostContactMutation()
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
 
   const formik = useFormik({
     initialValues: {
@@ -40,6 +46,7 @@ const ContactPage = () => {
         </p>
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
           <input
+            ref={inputRef}
             name="firstName"
             type="text"
             placeholder="First Name"
@@ -94,7 +101,7 @@ const ContactPage = () => {
       </div>
 
       <div className="md:w-1/2 w-full flex flex-col justify-between gap-4 p-4">
-        <h2 className="text-2xl font-semibold">Get in touch</h2>
+        <h2 className="text-2xl font-semibold">Follow Us</h2>
         <div className="p-2">
           <img src={Mandalorian} alt="Mandalorian with Grogu" loading="lazy" className="w-full object-cover rounded" />
         </div>
