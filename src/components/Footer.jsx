@@ -1,19 +1,18 @@
 import { Link } from 'react-router-dom'
-import { footerLinks } from '../helpers'
+// import { footerLinks } from '../helpers'
 
 export const Footer = () => {
   return (
-    <footer className="flex justify-between md:py-6 py-3 md:px-16 px-8 bg-custom-gray text-white font-sans md:text-base text-xs">
-      <span className="text-custom-light-gray">&copy; 2023 Grogu LLC</span>
-      <ul className="flex md:gap-6 gap-1">
-        {footerLinks.map((link) => (
-          <li key={link.name} className="flex">
-            <Link to={link.path} className="flex items-center hover:text-custom-yellow">
-              <span className="ml-2 ">{link.name}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+      <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Charlie Dragster. All rights reserved.</p>
+      <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+        <Link className="text-xs hover:underline underline-offset-4" href="#">
+          Terms of Service
+        </Link>
+        <Link className="text-xs hover:underline underline-offset-4" href="#">
+          Privacy
+        </Link>
+      </nav>
     </footer>
   )
 }

@@ -1,64 +1,67 @@
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { navLinks } from '../helpers'
-import { StarWarsLogo } from '../assets/images'
-import { AiOutlineClose } from 'react-icons/ai'
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { Button } from './Button'
+import { Link } from 'react-router-dom'
 
 export const Header = () => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const handleToggle = () => {
-    setIsOpen((prevValue) => !prevValue)
+  function MountainIcon(props) {
+    return (
+      <svg
+        {...props}
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+      </svg>
+    )
   }
 
   return (
-    <header className="sticky flex justify-between md:py-6 py-3 md:px-16 px-8 bg-custom-black text-white font-sans top-0 z-50">
-      <Link to="/">
-        <img src={StarWarsLogo} alt="Logo" loading="lazy" className="max-md:w-20" />
+    <header className="px-4 lg:px-6 h-14 flex items-center">
+      <Link className="flex items-center justify-center" href="#">
+        <MountainIcon className="h-6 w-6" />
+        <span className="sr-only">Acme Inc</span>
       </Link>
-
-      {/* Handle icon render */}
-      <div className="md:hidden flex items-center z-10">
-        <Button onClick={handleToggle}>{isOpen ? <AiOutlineClose size={30} /> : <GiHamburgerMenu size={30} />}</Button>
-      </div>
-
-      {/* Desktop nav */}
-      <ul className="hidden md:flex md:gap-3 lg:gap-6 md:text-xs lg:text-base">
-        {navLinks.map((link) => (
-          <li key={link.name} className="flex">
-            <NavLink
-              to={link.path}
-              className="flex items-center hover:text-custom-yellow"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="w-6 flex items-center">{link.icon}</div>
-              <span className="lg:ml-2 ml-1">{link.name}</span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-
-      {/* Mobile nav */}
-      <ul
-        className={`fixed top-0 right-0 w-full h-full flex flex-col justify-evenly p-8 bg-custom-black text-center text-xl transform transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden`}
-      >
-        {navLinks.map((link) => (
-          <li key={link.name} className="flex justify-center items-center my-4">
-            <NavLink
-              to={link.path}
-              className="flex items-center hover:text-custom-yellow"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="w-6 flex items-center">{link.icon}</div>
-              <span className="ml-1">{link.name}</span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+      <nav className="ml-auto flex gap-4 sm:gap-6">
+        <a
+          className="text-sm font-medium hover:underline underline-offset-4"
+          href="https://music.apple.com/ua/artist/charlie-dragster/1490331105"
+        >
+          APPLE MUSIC
+        </a>
+        <a
+          className="text-sm font-medium hover:underline underline-offset-4"
+          href="https://open.spotify.com/artist/2eMz1L8eKhqZJqlPO7eVJ9?si=M70_JhN-SVSR217YA8EE1Q"
+        >
+          SPOTIFY
+        </a>
+        <a
+          className="text-sm font-medium hover:underline underline-offset-4"
+          href="https://soundcloud.com/aw2hidpggr42"
+        >
+          SOUNDCLOUD
+        </a>
+        <a
+          className="text-sm font-medium hover:underline underline-offset-4"
+          href="https://soundcloud.com/acharliedragster"
+        >
+          RARE SOUNDCLOUD
+        </a>
+        <a
+          className="text-sm font-medium hover:underline underline-offset-4"
+          href="https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/51889617958731799907135205249741173614347316798349306580562531469835636834305"
+        >
+          NFT
+        </a>
+        <a className="text-sm font-medium hover:underline underline-offset-4" href="/contacts">
+          CONTACT
+        </a>
+      </nav>
     </header>
   )
 }

@@ -1,44 +1,116 @@
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { GroguImage } from '../assets/images'
+import { initializeApp } from 'firebase/app'
+import { useState } from 'react'
+import { getDatabase, ref, set } from 'firebase/database'
+import { getStorage, ref as reff, getDownloadURL } from 'firebase/storage'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { uid } from 'uid'
+
+import { Button } from '../components/Button'
+
+const firebaseConfig = {
+  apiKey: 'API_KEY',
+  authDomain: 'PROJECT_ID.firebaseapp.com',
+  // The value of `databaseURL` depends on the location of the database
+  databaseURL: 'https://dimamusic-26395-default-rtdb.firebaseio.com/',
+  projectId: 'dimamusic-26395',
+  storageBucket: 'gs://dimamusic-26395.appspot.com',
+  messagingSenderId: 'SENDER_ID',
+  appId: 'APP_ID',
+  // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
+  measurementId: 'G-MEASUREMENT_ID',
+}
+
+// Initialize firebase app.
+const app = initializeApp(firebaseConfig)
+// Initialize firebase database and get the reference of firebase database object.
+const database = getDatabase(app)
+const storage = getStorage()
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/Sxua1qK2pnL
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
+
+const pathReference = reff(storage, 'bundle.zip')
 
 const LandingPage = () => {
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState(false)
+  const [url, setUrl] = useState('')
+
+  getDownloadURL(pathReference)
+    .then((url) => {
+      // `url` is the download URL for 'images/stars.jpg'
+
+      // This can be downloaded directly:
+      const xhr = new XMLHttpRequest()
+      xhr.responseType = 'blob'
+      xhr.onload = (event) => {
+        const blob = xhr.response
+      }
+      xhr.open('GET', url)
+      xhr.send()
+      setUrl(url)
+    })
+    .catch((error) => {
+      // Handle any errors
+    })
+
+  const onSubmit = (e) => {
+    const data = {
+      email: email,
+    }
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+    if (email.match(validRegex)) {
+      set(ref(database, 'email/' + uid()), data)
+        .then(() => {
+          toast.success('Successfully submitted your email!')
+        })
+        .catch(() => {
+          toast.error('Failed to submit email')
+        })
+      e.preventDefault()
+      setEmail('')
+    } else {
+      setError(true)
+    }
+  }
+
   return (
-    <section className="h-[75vh] flex flex-col items-center justify-around md:gap-6 gap-2 p-8 md:text-xl text-xs text-custom-yellow font-star-wars">
-      <motion.p initial={{ y: 275, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 5, delay: 1 }}>
-        A long time ago in a variable far, far away, React components were born. They brought balance to the Front-End
-        universe. But remember, the source code can have a strong influence on the developers, it&apos;s said to be as
-        alluring as the Dark Side, leading to a phenomenon known as JavaScript fatigue. Some say it&apos;s a more
-        seductive version of JavaScript… but not stronger...
-      </motion.p>
-      <motion.p initial={{ y: 150, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 5, delay: 6 }}>
-        CSS, much like the Sith in the Star Wars universe, can be a formidable adversary. Powerful and seductive, yet it
-        can lead to frustration and confusion. Mastering CSS is akin to overcoming the Dark Side - it requires patience,
-        practice, and a deep understanding of its intricacies. But fear not, for every Sith Lord, there&apos;s a Jedi
-        ready to rise. With the right mindset and tools, we can conquer CSS, just as Darth Vader was ultimately
-        defeated. So let&apos;s embark on this epic journey together, and may the source be with you...
-      </motion.p>
-      <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 3, delay: 11 }}
-        className="flex items-center justify-evenly gap-4"
-      >
-        <div className="md:block hidden w-[15%]">
-          <img src={GroguImage} alt="Baby Yoda" className="object-cover" />
+    <section className="h-[75vh] flex  items-center justify-around">
+      <div className="container flex grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10">
+        <div className="space-y-3">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">Charlie Dragster</h1>
+          <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            Electronic music
+          </p>
         </div>
-
-        <Link
-          to="/episodes"
-          className="px-4 py-2 mt-4 rounded text-custom-yellow bg-custom-black  hover:text-custom-black hover:bg-custom-yellow ring-1 ring-custom-yellow inline-flex items-center transform transition-all duration-300 hover:scale-95"
-        >
-          Begin your journey
-        </Link>
-
-        <div className="md:block hidden w-[15%]">
-          <img src={GroguImage} alt="Baby Yoda" className="object-cover transform scale-x-[-1]" />
+        <div className="mx-auto w-full max-w-sm space-y-3">
+          <form className="flex space-x-3">
+            <input
+              className="max-w-lg flex-1"
+              placeholder="Enter your email"
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                setError(false)
+              }}
+            />
+            {error && <div className="error">type valid email</div>}
+            {/* <Input className="max-w-lg flex-1" placeholder="Enter your email" type="email" /> */}
+            <Button onClick={onSubmit}>Subscribe</Button>
+          </form>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            Sign up to get notified when new music released and get free bundle of digital assets.
+            <a className="underline underline-offset-2" href={url}>
+              Download
+            </a>
+          </p>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

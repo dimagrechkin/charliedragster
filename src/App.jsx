@@ -16,10 +16,10 @@ const Help = lazy(() => import('./pages/Help'))
 
 export const App = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-[100dvh]">
       <Router>
         <Header />
-        <main className="flex-grow md:px-16 p-4 bg-custom-black">
+        <main className="flex-1">
           <Suspense fallback={<Spinner />}>
             <Routes>
               <Route path="/" element={<LandingPageWithMeteors />} />
