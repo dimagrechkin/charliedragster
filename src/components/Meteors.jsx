@@ -8,6 +8,7 @@ export const Meteors = () => {
           key={'meteor' + idx}
           className="meteor-raining"
           style={{
+            zIndex: 1,
             top: Math.floor(Math.random() * window.innerHeight) + 'px',
             left: Math.floor(Math.random() * window.innerWidth) + 'px',
             animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + 's',

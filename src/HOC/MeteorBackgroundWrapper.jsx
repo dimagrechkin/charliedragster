@@ -4,9 +4,12 @@ import LandingPage from '../pages/LandingPage'
 const MeteorBackgroundWrapper = (Component) => {
   const InnerComponent = (props) => {
     return (
-      <div className="relative h-full w-full overflow-hidden">
+      <div
+        className="relative h-full w-full overflow-hidden bg-center bg-cover "
+        // style={{ backgroundImage: `url(IMG_00561.PNG)`, zIndex: 1 }}
+      >
         <Meteors />
-        <Component {...props} />
+        <Component style="zIndex: 2 " {...props} />
       </div>
     )
   }

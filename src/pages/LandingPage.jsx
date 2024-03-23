@@ -7,17 +7,16 @@ import 'react-toastify/dist/ReactToastify.css'
 import { uid } from 'uid'
 
 import { Button } from '../components/Button'
+import { links } from '../helpers/const'
 
 const firebaseConfig = {
   apiKey: 'API_KEY',
   authDomain: 'PROJECT_ID.firebaseapp.com',
-  // The value of `databaseURL` depends on the location of the database
-  databaseURL: 'https://dimamusic-26395-default-rtdb.firebaseio.com/',
-  projectId: 'dimamusic-26395',
-  storageBucket: 'gs://dimamusic-26395.appspot.com',
+  databaseURL: import.meta.env.VITE_DATABASE_URL,
+  projectId: import.meta.env.VITE_PROJECT_ID_DI,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET_DI,
   messagingSenderId: 'SENDER_ID',
   appId: 'APP_ID',
-  // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
   measurementId: 'G-MEASUREMENT_ID',
 }
 
@@ -41,21 +40,16 @@ const LandingPage = () => {
 
   getDownloadURL(pathReference)
     .then((url) => {
-      // `url` is the download URL for 'images/stars.jpg'
-
-      // This can be downloaded directly:
       const xhr = new XMLHttpRequest()
       xhr.responseType = 'blob'
-      xhr.onload = (event) => {
-        const blob = xhr.response
+      xhr.onload = () => {
+        // const blob = xhr.response
       }
       xhr.open('GET', url)
       xhr.send()
       setUrl(url)
     })
-    .catch((error) => {
-      // Handle any errors
-    })
+    .catch(() => {})
 
   const onSubmit = (e) => {
     const data = {
@@ -78,19 +72,46 @@ const LandingPage = () => {
     }
   }
 
+  const listItems = (id) =>
+    links.map(
+      (link) =>
+        link.row === id && (
+          <span
+            key={link.id}
+            className="w-1/2 text-center text-sm font-medium rounded-full border border-gray-200/90 bg-gray-200/80 py-1 z-10"
+          >
+            <a className="text-sm font-medium hover:underline underline-offset-4" href={link.url}>
+              {link.name}
+            </a>
+          </span>
+        )
+    )
+
+  const tableSize = [1, 2, 3, 4, 5]
+
   return (
-    <section className="h-[75vh] flex  items-center justify-around">
-      <div className="container flex grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10">
-        <div className="space-y-3">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">Charlie Dragster</h1>
-          <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+    <section className="h-[92vh] flex  items-center justify-around">
+      <div className="container flex grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10 z-10">
+        {/* <img className="mx-auto grid z-10 w-20 h-20" src="IMG_0056.PNG" alt="image description" /> */}
+        <div className="w-full max-w-sm mx-auto grid gap-2 pt-4 z-10">
+          {tableSize.map((i) => (
+            <div key={i} className="flex gap-2">
+              {listItems(i)}
+            </div>
+          ))}
+        </div>
+        <div className="space-y-3 ">
+          <h1 className="min-h-[230px] lg:min-h-[120px] font-bold tracking-tighter text-8xl sm:text-8xl md:text-8xl lg:text-8xl bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">
+            Charlie Dragster
+          </h1>
+          {/* <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed  xl:text-xl/relaxed dark:text-gray-400 ">
             Electronic music
-          </p>
+          </p> */}
         </div>
         <div className="mx-auto w-full max-w-sm space-y-3">
           <form className="flex space-x-3">
             <input
-              className="max-w-lg flex-1"
+              className="placeholder:pl-3 w-44 flex-1 relative inline-flex items-center justify-center border-gray-200/90 bg-gray-200/80  transition-all duration-200  font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
               placeholder="Enter your email"
               type="email"
               value={email}
@@ -99,7 +120,8 @@ const LandingPage = () => {
                 setError(false)
               }}
             />
-            {error && <div className="error">type valid email</div>}
+
+            {error && <div className="error">Type valid Email</div>}
             {/* <Input className="max-w-lg flex-1" placeholder="Enter your email" type="email" /> */}
             <Button onClick={onSubmit}>Subscribe</Button>
           </form>
